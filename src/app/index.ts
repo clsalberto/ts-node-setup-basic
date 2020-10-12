@@ -1,9 +1,52 @@
-import express from 'express'
+import 'dotenv/config'
+import 'express-async-errors'
+import cors from 'cors'
+import express, {
+  ErrorRequestHandler,
+  NextFunction,
+  Request,
+  Response
+} from 'express'
+import helmet from 'helmet'
 
-const app = express()
+import routes from '../routes'
 
-app.get('/', (request, response) => {
-  return response.json({ message: 'Welcome to your new project.' })
-})
+class App {
+  server: express.Application
 
-export default app
+  constructor() {
+    this.server = express()
+    this.middlewares()
+    this.routes()
+    this.exceptionHandler()
+  }
+
+  middlewares(): void {
+    this.server.use(cors({ origin: process.env.FRONT_URL }))
+    this.server.use(helmet())
+    this.server.use(express.json())
+  }
+
+  routes(): void {
+    this.server.use(routes)
+  }
+
+  exceptionHandler(): void {
+    this.server.use(
+      (
+        error: ErrorRequestHandler,
+        request: Request,
+        response: Response,
+        next: NextFunction
+      ) => {
+        if (process.env.NODE_ENV === 'development') {
+          return response.status(500).json(error)
+        }
+
+        return response.status(500).json({ error: 'Internal server error' })
+      }
+    )
+  }
+}
+
+export default new App().server
