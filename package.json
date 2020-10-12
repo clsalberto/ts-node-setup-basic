@@ -18,6 +18,7 @@
   "lint-staged": {
     "*.js": [
       "eslint --fix",
+      "cross-env CI=true yarn test --bail --findRelatedTests",
       "git add --all"
     ]
   },
@@ -41,6 +42,7 @@
     "@typescript-eslint/parser": "^4.4.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "commitizen": "^4.2.1",
+    "cross-env": "^7.0.2",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "^7.11.0",
     "eslint-config-standard": "^14.1.1",
