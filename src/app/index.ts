@@ -33,7 +33,7 @@ class App {
 
   exceptionHandler(): void {
     this.server.use(
-      (
+      async (
         error: ErrorRequestHandler,
         request: Request,
         response: Response,
