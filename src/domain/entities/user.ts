@@ -24,7 +24,7 @@ export class User extends Entity<UserProps> {
     const user = new User(
       {
         ...props,
-        createdIn: now,
+        createdIn: new Date(),
         expiresIn: new Date(now.setHours(now.getHours() + 6)),
         token: crypto.randomBytes(20).toString('hex'),
         activated: props.activated ?? false
