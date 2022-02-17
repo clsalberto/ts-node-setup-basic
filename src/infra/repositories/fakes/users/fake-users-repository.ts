@@ -16,4 +16,8 @@ export class FakeUsersRepository implements UsersRepository {
 
     return user
   }
+
+  async load(): Promise<User[]> {
+    return this.users
+  }
 }
