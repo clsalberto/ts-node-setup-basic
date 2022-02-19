@@ -24,7 +24,8 @@
           "module",
           "/^~/domain/",
           "/^~/applications/",
-          "/^~/infra/",
+          "/^~/infrastructure/",
+          "/^~/ports/",
           ["parent", "sibling", "index"]
         ],
         "alphabetize": { "order": "asc", "ignoreCase": true }
