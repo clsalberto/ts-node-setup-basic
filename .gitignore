@@ -2,8 +2,6 @@
 /coverage
 /dist
 
-/.swc
-
 /*.log
 
 .env

@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "restart": true,
+      "name": "Launch & Debug",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "protocol": "inspector",
+      "request": "attach"
+    }
+  ]
+}

@@ -4,14 +4,15 @@ import crypto from 'crypto'
 import { Entity } from './entity'
 
 export interface UserProps {
-  avatar?: string
+  imageId?: string
   name: string
   email: string
   password: string
-  token?: string
-  expiresIn?: Date
+  token: string
+  roleId: string
+  expiresIn: Date
   createdIn?: Date
-  activated?: boolean
+  active?: boolean
 }
 
 export class User extends Entity<UserProps> {
@@ -20,19 +21,7 @@ export class User extends Entity<UserProps> {
   }
 
   static create(props: UserProps, id?: string) {
-    const now = new Date()
-
-    const user = new User(
-      {
-        ...props,
-        createdIn: new Date(),
-        expiresIn: new Date(now.setHours(now.getHours() + 6)),
-        token: crypto.randomBytes(20).toString('hex'),
-        password: hashSync(props.password, 8),
-        activated: props.activated ?? false
-      },
-      id
-    )
+    const user = new User(props, id)
 
     return user
   }

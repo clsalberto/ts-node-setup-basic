@@ -13,6 +13,7 @@
   "plugins": ["@typescript-eslint", "import-helpers", "prettier"],
   "rules": {
     "camelcase": "off",
+    "no-unused-vars": "off",
     "no-useless-constructor": "off",
     "prettier/prettier": "error",
     "space-before-function-paren": "off",
