@@ -1,22 +1,24 @@
 import { hash } from 'bcryptjs'
 import crypto from 'crypto'
 
-import { User } from '~/domain/entities'
+import { IRolesRepository, IUseCase, IUsersRepository } from '~/core/contracts'
+import { User } from '~/core/entities'
+import { UserAlreadyExists } from '~/core/errors'
 
-import {
-  IUsersRepository,
-  IUserRequestDto,
-  IRolesRepository
-} from '~/applications/contracts'
-import { UserAlreadyExists } from '~/applications/errors'
+export interface UserRequestDto {
+  name: string
+  email: string
+  password: string
+  role: string
+}
 
-export class CreateUserUseCase {
+export class CreateUserUseCase implements IUseCase<UserRequestDto, User> {
   constructor(
     private usersRepository: IUsersRepository,
     private rolesRepository: IRolesRepository
   ) {}
 
-  async execute(data: IUserRequestDto): Promise<User> {
+  async execute(data: UserRequestDto): Promise<User> {
     const userExists = await this.usersRepository.findByEmail(data.email)
 
     if (userExists) {

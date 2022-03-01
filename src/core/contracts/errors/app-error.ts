@@ -1,4 +1,5 @@
 export interface IAppError extends Error {
-  code: number
+  type: string
+  status: number
   metadata?: object
 }

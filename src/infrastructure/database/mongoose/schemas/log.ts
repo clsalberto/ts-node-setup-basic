@@ -1,4 +1,4 @@
-import { LogModel, TypeLog } from '~/applications/contracts'
+import { LogModel, TypeLog } from '~/core/contracts'
 
 import { mongoose } from '~/infrastructure/database'
 

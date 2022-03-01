@@ -12,12 +12,12 @@ model User {
   avatar    Image?    @relation(fields: [imageId], references: [id], onDelete: SetNull, onUpdate: Cascade)
   imageId   String?   @db.Uuid
   name      String    @db.VarChar(80)
-  email     String    @unique @db.VarChar(120)
-  password  String    @db.VarChar(120)
+  email     String    @unique @db.VarChar()
+  password  String    @db.VarChar()
   token     String?   @unique @db.VarChar(60)
   role      Role      @relation(fields: [roleId], references: [id])
   roleId    String    @db.Uuid
-  expiredIn DateTime?
+  expiresIn DateTime?
   createdIn DateTime  @default(now())
   active    Boolean   @default(false)
 
@@ -28,7 +28,7 @@ model User {
 
 model Image {
   id   String @id @db.Uuid
-  name String @db.VarChar(80)
+  name String @db.VarChar()
   path String @db.VarChar()
   size Int    @db.Integer
 
@@ -43,7 +43,7 @@ model Acount {
   logo      Image?   @relation(fields: [imageId], references: [id], onDelete: SetNull, onUpdate: Cascade)
   imageId   String?  @db.Uuid
   company   String   @db.VarChar(80)
-  email     String   @unique @db.VarChar(120)
+  email     String   @unique @db.VarChar()
   cnpj      String   @db.VarChar(30)
   domain    String   @unique @db.VarChar(30)
   createdIn DateTime @default(now())
@@ -56,7 +56,7 @@ model Acount {
 
 model Role {
   id          String  @id @db.Uuid
-  slug        String  @db.VarChar()
+  slug        String  @unique @db.VarChar()
   name        String  @db.VarChar()
   description String? @db.Text
 
@@ -70,7 +70,7 @@ model Module {
   id          String  @id @db.Uuid
   owner       String? @db.Uuid
   module      Module? @relation("ModuleToModule", fields: [owner], references: [id])
-  slug        String  @db.VarChar()
+  slug        String  @unique @db.VarChar()
   name        String  @db.VarChar()
   description String? @db.Text
   value       Int?    @db.Integer

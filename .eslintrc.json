@@ -23,10 +23,9 @@
         "newlinesBetween": "always",
         "groups": [
           "module",
-          "/^~/domain/",
-          "/^~/applications/",
+          "/^~/core/",
           "/^~/infrastructure/",
-          "/^~/ports/",
+          "/^~/application/",
           ["parent", "sibling", "index"]
         ],
         "alphabetize": { "order": "asc", "ignoreCase": true }

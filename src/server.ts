@@ -1,3 +1,3 @@
-import { app } from '~/ports/app'
+import { app } from '~/application/app'
 
 app.listen(3333)

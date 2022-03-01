@@ -7,9 +7,8 @@ export * from './repositories/roles-repository'
 export * from './providers/cache-provider'
 export * from './providers/queue-provider'
 
-// Dto's
-export * from './dtos/acount-dto'
-export * from './dtos/user-dto'
+// Errors
+export * from './errors/app-error'
 
-// Error
-export * from './error/app-error'
+// Use Case
+export * from './use-case'
