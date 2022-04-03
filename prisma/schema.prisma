@@ -2,81 +2,39 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator erd {
+  provider = "prisma-erd-generator"
+  output   = "./erd.svg"
+  theme    = "neutral"
+}
+
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id        String    @id @db.Uuid
-  avatar    Image?    @relation(fields: [imageId], references: [id], onDelete: SetNull, onUpdate: Cascade)
-  imageId   String?   @db.Uuid
-  name      String    @db.VarChar(80)
-  email     String    @unique @db.VarChar()
-  password  String    @db.VarChar()
-  token     String?   @unique @db.VarChar(60)
-  role      Role      @relation(fields: [roleId], references: [id])
-  roleId    String    @db.Uuid
-  expiresIn DateTime?
-  createdIn DateTime  @default(now())
-  active    Boolean   @default(false)
+  id        String   @id
+  avatar    String?
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  active    Boolean  @default(false)
 
-  acounts Acount[]
+  file File? @relation(fields: [avatar], references: [id], onUpdate: Cascade, onDelete: SetNull)
 
   @@map("Users")
 }
 
-model Image {
-  id   String @id @db.Uuid
-  name String @db.VarChar()
-  path String @db.VarChar()
-  size Int    @db.Integer
-
-  users   User[]
-  acounts Acount[]
-
-  @@map("Images")
-}
-
-model Acount {
-  id        String   @id @db.Uuid
-  logo      Image?   @relation(fields: [imageId], references: [id], onDelete: SetNull, onUpdate: Cascade)
-  imageId   String?  @db.Uuid
-  company   String   @db.VarChar(80)
-  email     String   @unique @db.VarChar()
-  cnpj      String   @db.VarChar(30)
-  domain    String   @unique @db.VarChar(30)
-  createdIn DateTime @default(now())
-  active    Boolean  @default(false) @db.Boolean
+model File {
+  id   String @id
+  name String
+  path String @db.Text
+  size Int
 
   users User[]
 
-  @@map("Acounts")
-}
-
-model Role {
-  id          String  @id @db.Uuid
-  slug        String  @unique @db.VarChar()
-  name        String  @db.VarChar()
-  description String? @db.Text
-
-  modules Module[]
-  users   User[]
-
-  @@map("Roles")
-}
-
-model Module {
-  id          String  @id @db.Uuid
-  owner       String? @db.Uuid
-  module      Module? @relation("ModuleToModule", fields: [owner], references: [id])
-  slug        String  @unique @db.VarChar()
-  name        String  @db.VarChar()
-  description String? @db.Text
-  value       Int?    @db.Integer
-
-  roles   Role[]
-  modules Module[] @relation("ModuleToModule")
-
-  @@map("Modules")
+  @@map("Files")
 }

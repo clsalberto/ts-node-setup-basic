@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { routes as userRoutes } from '~/application/routes/users'
+import { routes as userRoutes } from '~/app/routes/users'
 
 const routes = Router()
 

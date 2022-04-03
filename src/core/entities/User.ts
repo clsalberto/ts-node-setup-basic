@@ -1,17 +1,12 @@
-import { hashSync } from 'bcryptjs'
-import crypto from 'crypto'
-
-import { Entity } from './entity'
+import { Entity } from './Entity'
 
 export interface UserProps {
-  imageId?: string
   name: string
   email: string
   password: string
-  token: string
-  roleId: string
-  expiresIn: Date
-  createdIn?: Date
+  avatar?: string
+  createdAt?: Date
+  updatedAt?: Date
   active?: boolean
 }
 
@@ -21,8 +16,6 @@ export class User extends Entity<UserProps> {
   }
 
   static create(props: UserProps, id?: string) {
-    const user = new User(props, id)
-
-    return user
+    return new User(props, id)
   }
 }

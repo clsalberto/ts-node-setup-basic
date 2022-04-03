@@ -1,5 +1,2 @@
-// Accounts
-export * from './accounts/create-account'
-
-// Asers
-export * from './users/create-user'
+// Users
+export * from './users/CreateUserUseCase'

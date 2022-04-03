@@ -1,8 +1,7 @@
 {
   "env": {
     "es2021": true,
-    "node": true,
-    "jest": true
+    "node": true
   },
   "extends": ["standard", "prettier"],
   "parser": "@typescript-eslint/parser",
@@ -12,7 +11,6 @@
   },
   "plugins": ["@typescript-eslint", "import-helpers", "prettier"],
   "rules": {
-    "camelcase": "off",
     "no-unused-vars": "off",
     "no-useless-constructor": "off",
     "prettier/prettier": "error",
@@ -24,8 +22,8 @@
         "groups": [
           "module",
           "/^~/core/",
-          "/^~/infrastructure/",
-          "/^~/application/",
+          "/^~/infra/",
+          "/^~/app/",
           ["parent", "sibling", "index"]
         ],
         "alphabetize": { "order": "asc", "ignoreCase": true }

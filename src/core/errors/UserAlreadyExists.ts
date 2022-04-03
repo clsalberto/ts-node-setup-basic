@@ -1,18 +1,17 @@
-import { table } from 'console'
+import { AppError } from '~/core/contracts'
 
-import { IAppError } from '~/core/contracts'
-
-export class UserAlreadyExists implements IAppError {
+export class UserAlreadyExists implements AppError {
   type: string
+  statusCode: number
+  data?: object
   name: string
-  status: number
   message: string
-  metadata?: object
   stack?: string
+  cause?: Error
 
   constructor() {
     this.type = 'error'
-    this.status = 401
+    this.statusCode = 401
     this.name = 'UserAlreadyExists'
     this.message = 'User already exists'
   }

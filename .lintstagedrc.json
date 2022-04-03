@@ -1,7 +1,3 @@
 {
-  "*.ts": [
-    "eslint --fix",
-    "yarn test --bail --findRelatedTests",
-    "git add --all"
-  ]
+  "*.ts": ["eslint --fix", "git add --all"]
 }

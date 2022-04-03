@@ -1,3 +1,3 @@
-export interface IUseCase<Req, Res> {
+export interface UseCase<Req, Res> {
   execute(data?: Req): Promise<Res | void>
 }

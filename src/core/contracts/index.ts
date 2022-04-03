@@ -1,14 +1,12 @@
 // Repositories
-export * from './repositories/acounts-repository'
-export * from './repositories/users-repository'
-export * from './repositories/roles-repository'
+export * from './repositories/UsersRepository'
 
 // Providers
-export * from './providers/cache-provider'
-export * from './providers/queue-provider'
+export * from './providers/CacheProvider'
+export * from './providers/QueueProvider'
 
 // Errors
-export * from './errors/app-error'
+export * from './AppError'
 
 // Use Case
-export * from './use-case'
+export * from './UseCase'

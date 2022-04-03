@@ -1,12 +1,22 @@
-import { LogModel, TypeLog } from '~/core/contracts'
+import { mongoose } from '~/infra/database'
 
-import { mongoose } from '~/infrastructure/database'
+interface Author {
+  name: string
+  email: string
+}
+
+interface LogModel {
+  type: string
+  author: Author
+  message: string
+  data?: object | null
+  createdAt?: Date
+}
 
 const LogSchema = new mongoose.Schema({
   type: {
     type: String,
-    required: true,
-    default: TypeLog.Info
+    required: true
   },
   message: {
     type: String,
